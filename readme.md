@@ -47,4 +47,4 @@ project [xls-test](https://github.com/codeborne/xls-test) for the inspiration.
 
 # License
 
-pptx-test is open-source project and distributed under [MIT licence](http://choosealicense.com/licenses/mit/) license
+pptx-test is open-source project and distributed under [MIT](http://choosealicense.com/licenses/mit/) license

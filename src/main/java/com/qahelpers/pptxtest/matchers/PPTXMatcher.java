@@ -1,9 +1,7 @@
 package com.qahelpers.pptxtest.matchers;
 
 import com.qahelpers.pptxtest.PPTX;
-import org.apache.poi.xslf.usermodel.XSLFShape;
-import org.apache.poi.xslf.usermodel.XSLFSlide;
-import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.apache.poi.xslf.usermodel.*;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.TypeSafeMatcher;
@@ -27,6 +25,14 @@ abstract class PPTXMatcher extends TypeSafeMatcher<PPTX> implements SelfDescribi
                 if (shape instanceof XSLFTextShape) {
                     XSLFTextShape textShape = (XSLFTextShape) shape;
                     mismatchDescription.appendText(textShape.getText()).appendText("\t");
+                }
+                if (shape instanceof XSLFTable) {
+                    XSLFTable tableShape = (XSLFTable) shape;
+                    for (XSLFTableRow tableRow : tableShape) {
+                        for (XSLFTableCell tableCell : tableRow) {
+                            mismatchDescription.appendText(tableCell.getText()).appendText("\t");
+                        }
+                    }
                 }
             }
             mismatchDescription.appendText("\n");
