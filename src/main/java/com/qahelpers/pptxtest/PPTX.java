@@ -1,6 +1,8 @@
 package com.qahelpers.pptxtest;
 
 import com.qahelpers.pptxtest.matchers.ContainsText;
+import com.qahelpers.pptxtest.matchers.DoesNotContainText;
+import com.qahelpers.pptxtest.matchers.HasSlideCount;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.hamcrest.Matcher;
 
@@ -50,5 +52,13 @@ public class PPTX {
 
     public static Matcher<PPTX> containsText(String text) {
         return new ContainsText(text);
+    }
+
+    public static Matcher<PPTX> doesNotContainText(String text) {
+        return new DoesNotContainText(text);
+    }
+
+    public static Matcher<PPTX> hasSlideCount(int slideCount) {
+        return new HasSlideCount(slideCount);
     }
 }
