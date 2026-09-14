@@ -7,6 +7,8 @@ Make sure your code always generates correct and valid PPTX files (from PowerPoi
 ## How to use
 Just add assertThat from Hamcrest and enjoy ))
 
+### containsText matcher
+
 ```java
 import PPTX;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,50 @@ public class ContainsTextTests {
         assertThat(pptx, containsText("My pretty chart"));
         assertThat(pptx, containsText("37.12%"));
         assertThat(pptx, containsText("Beehive State (official), The Mormon State"));
+    }
+}
+```
+
+### doesNotContainText matcher
+
+```java
+import PPTX;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static PPTX.doesNotContainText;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class DoesNotContainTextTests {
+
+    @Test
+    void canAssertThatPptxDoesNotContainText() throws IOException {
+        PPTX pptx = new PPTX(getClass().getClassLoader().getResource("TestPPTX.pptx"));
+        assertThat(pptx, doesNotContainText("Confidential information"));
+        assertThat(pptx, doesNotContainText("Debug text"));
+        assertThat(pptx, doesNotContainText("TODO: fix this"));
+    }
+}
+```
+
+### hasSlideCount matcher
+
+```java
+import PPTX;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static PPTX.hasSlideCount;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class HasSlideCountTests {
+
+    @Test
+    void canAssertThatPptxHasExpectedNumberOfSlides() throws IOException {
+        PPTX pptx = new PPTX(getClass().getClassLoader().getResource("TestPPTX.pptx"));
+        assertThat(pptx, hasSlideCount(10));
     }
 }
 ```
